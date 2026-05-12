@@ -2,21 +2,19 @@
 
 namespace AccountService.Domain.Entities;
 
-public class Account: BaseEntity
+public class Account : BaseEntity
 {
-
-    public string Owner { get; private set; }
     public decimal Balance { get; private set; }
-
+    public Guid CustomerId { get; private set; }
     public Account()
     {
-            
+
     }
-    public Account(string owner, decimal initialBalance)
+    public Account(Guid customerId ,decimal initialBalance)
     {
         Id = Guid.NewGuid();
-        Owner = owner;
         Balance = initialBalance;
+        CustomerId = customerId;
     }
 
     public void Deposit(decimal amount)

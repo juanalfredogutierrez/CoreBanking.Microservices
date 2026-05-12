@@ -1,22 +1,23 @@
-﻿using CustomerService.Application.Features.Customer;
-using CustomerService.Application.Intefaces;
-using CustomerService.Domain.Entities;
-
-public class CreateCustomerHandler
+﻿using CustomerService.Application.Interfaces;
+namespace CustomerService.Application.Features.Customer
 {
-    private readonly ICustomerRepository _repository;
-
-    public CreateCustomerHandler(ICustomerRepository repository)
+    public class CreateCustomerHandler
     {
-        _repository = repository;
+        private readonly ICustomerRepository _repository;
+
+        public CreateCustomerHandler(ICustomerRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand command)
+        {
+            var customer = new Domain.Entities.Customer(command.Name, command.Email);
+
+            await _repository.AddAsync(customer);
+
+            return customer;
+        }
     }
 
-    public async Task<Customer> Handle(CreateCustomerCommand command)
-    {
-        var customer = new Customer(command.Name, command.Email);
-
-        await _repository.AddAsync(customer);
-
-        return customer;
-    }
 }

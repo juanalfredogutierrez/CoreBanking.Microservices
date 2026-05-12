@@ -1,4 +1,4 @@
-﻿using CustomerService.Application.Intefaces;
+﻿using CustomerService.Application.Interfaces;
 using CustomerService.Domain.Entities;
 using CustomerService.Infrastructure.Persistence;
 
@@ -17,6 +17,11 @@ namespace CustomerService.Infrastructure.Repositories
         {
             await _context.Customers.AddAsync(customer);
             await _context.SaveChangesAsync();
+        }
+
+        public Task<bool> ExistsAsync(Guid customerId)
+        {
+             return Task.FromResult(_context.Customers.Any(c => c.Id == customerId));
         }
     }
 }

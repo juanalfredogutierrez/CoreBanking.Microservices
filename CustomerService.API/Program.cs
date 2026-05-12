@@ -1,4 +1,5 @@
-using CustomerService.Application.Intefaces;
+using CustomerService.Application.Features.Customer;
+using CustomerService.Application.Interfaces;
 using CustomerService.Infrastructure.Persistence;
 using CustomerService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
