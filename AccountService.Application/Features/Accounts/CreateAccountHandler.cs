@@ -19,7 +19,7 @@ namespace AccountService.Application.Features.Accounts
             var exists = await _customerClient.ExistsAsync(command.CustomerId);
 
             if (!exists)
-                throw new Exception("Customer does not exist");
+                throw new Exception("Cliente no existe.");
 
             var account = new Account(command.CustomerId, command.InitialBalance);
 
