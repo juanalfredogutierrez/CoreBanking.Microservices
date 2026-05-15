@@ -23,9 +23,9 @@ namespace CustomerService.API.Controllers
             var result = await _createHandler.Handle(command);
 
             if (result.IsFailure)
-                return BadRequest(result.Error);
+                return BadRequest(result);
 
-            return Ok(result.Value);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
