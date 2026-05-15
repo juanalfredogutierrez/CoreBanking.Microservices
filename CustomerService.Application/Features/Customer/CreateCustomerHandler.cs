@@ -1,4 +1,6 @@
-﻿using CustomerService.Application.Interfaces;
+﻿using CustomerService.Application.DTOs;
+using CustomerService.Application.Interfaces;
+using SharedKernel.Result;
 namespace CustomerService.Application.Features.Customer
 {
     public class CreateCustomerHandler
@@ -10,13 +12,20 @@ namespace CustomerService.Application.Features.Customer
             _repository = repository;
         }
 
-        public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand command)
+        public async Task<Result<CustomerDto>> Handle(CreateCustomerCommand command)
         {
             var customer = new Domain.Entities.Customer(command.Name, command.Email);
 
             await _repository.AddAsync(customer);
 
-            return customer;
+            var customerDto = new CustomerDto
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email
+            };
+
+            return Result<CustomerDto>.Success(customerDto);
         }
     }
 

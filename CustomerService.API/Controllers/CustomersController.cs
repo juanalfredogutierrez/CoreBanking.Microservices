@@ -20,8 +20,12 @@ namespace CustomerService.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateCustomerCommand command)
         {
-            var customer = await _createHandler.Handle(command);
-            return Ok(customer);
+            var result = await _createHandler.Handle(command);
+
+            if (result.IsFailure)
+                return BadRequest(result.Error);
+
+            return Ok(result.Value);
         }
 
         [HttpGet("{id}")]
