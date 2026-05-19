@@ -18,7 +18,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddHttpClient<ICustomerServiceClient, CustomerServiceClient>(client =>
 {
-    client.BaseAddress = new Uri("http://customerservice:8080");
+    client.BaseAddress = new Uri("http://customerservice-service");
 }).AddStandardResilienceHandler(options =>
 {
     options.Retry.MaxRetryAttempts = 3;
@@ -39,12 +39,12 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Swagger middleware
-if (app.Environment.IsDevelopment())
-{
+//// Swagger middleware
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseAuthorization();
 

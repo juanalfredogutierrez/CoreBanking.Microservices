@@ -1,5 +1,6 @@
 ﻿using AccountService.Domain.Entities;
 using AccountService.Application.Interfaces;
+using SharedKernel.Result;
 
 namespace AccountService.Application.Features.Accounts
 {
@@ -13,19 +14,19 @@ namespace AccountService.Application.Features.Accounts
             _customerClient = customerClient;   
         }
 
-        public async Task<Account> Handle(CreateAccountCommand command)
+        public async Task<Result<Account>> Handle(CreateAccountCommand command)
         {
           
             var exists = await _customerClient.ExistsAsync(command.CustomerId);
 
             if (!exists)
-                throw new Exception("Cliente no existe.");
+                return Result<Account>.Failure("Cliente no existe.");
 
             var account = new Account(command.CustomerId, command.InitialBalance);
 
             await _repository.AddAsync(account);
 
-            return account;
+            return Result<Account>.Success(account);
         }
     }
 }

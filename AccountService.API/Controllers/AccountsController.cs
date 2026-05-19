@@ -17,7 +17,11 @@ public class AccountsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateAccountCommand command)
     {
-        var account = await _handler.Handle(command);
-        return Ok(account);
+        var result = await _handler.Handle(command);
+
+        if (result.IsFailure)
+            return BadRequest(result);
+
+        return Ok(result);
     }
 }

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: customerservice
+  namespace: banking
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: customerservice
+
+  template:
+    metadata:
+      labels:
+        app: customerservice
+
+    spec:
+      containers:
+      - name: customerservice
+
+        image: customerservice:1.0
+
+        imagePullPolicy: IfNotPresent
+
+        ports:
+        - containerPort: 5002
+
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+
+        - name: ASPNETCORE_URLS
+          value: "http://+:5002"
+
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=sqlserver-service;Database=CustomerDb;User Id=sa;Password=TuPassword123!;TrustServerCertificate=True;"

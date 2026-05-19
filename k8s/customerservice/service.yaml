@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: customerservice-service
+  namespace: banking
+
+spec:
+  selector:
+    app: customerservice
+
+  ports:
+  - port: 80
+    targetPort: 5002
+
+  type: ClusterIP
