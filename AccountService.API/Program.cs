@@ -18,7 +18,14 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddHttpClient<ICustomerServiceClient, CustomerServiceClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5002"); 
+    client.BaseAddress = new Uri("http://customerservice:8080");
+}).AddStandardResilienceHandler(options =>
+{
+    options.Retry.MaxRetryAttempts = 3;
+
+    options.CircuitBreaker.FailureRatio = 0.5;
+
+    options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(10);
 });
 
 
