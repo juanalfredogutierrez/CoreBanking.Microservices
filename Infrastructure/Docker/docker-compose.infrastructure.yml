@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong@Passw0rd"
+
+    ports:
+      - "1433:1433"
+
+    networks:
+      - banking-network
+
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5432:5432"
+
+    networks:
+      - banking-network
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+networks:
+  banking-network:
+
+volumes:
+  sqlserver_data:
+  postgres_data:
