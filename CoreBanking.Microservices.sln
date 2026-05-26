@@ -56,9 +56,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{DDAB2304-AE76-45AC-83C6-3435B88F10C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CDF55D92-DF35-4427-80B2-F935AAB83F79}"
-	ProjectSection(SolutionItems) = preProject
-		CustomerService.Domain\Entities\CustomerDbContext.cs = CustomerService.Domain\Entities\CustomerDbContext.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{23515F8A-1184-4FDF-9A1D-8B2D86BA16C2}"
 EndProject
@@ -67,6 +64,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService.Application", "CustomerService.Application\CustomerService.Application.csproj", "{00610451-07D1-4BFB-85E5-BAC34717DADE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService.Infrastructure", "CustomerService.Infrastructure\CustomerService.Infrastructure.csproj", "{5FAA02A7-866C-474E-A0A9-5185787D3956}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Observability", "Observability", "{6B093AEB-9C5C-4BF4-A75C-CADDE57BBE80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{6A6B4DAE-82E9-4579-94FF-E08413AEE3A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{133D1109-365C-4E95-ABB4-7F5844C3A26C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resiliency", "Resiliency", "{02AC465E-F2FC-479A-87DC-903D51BF9E7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,6 +160,10 @@ Global
 		{593CCA63-4449-4339-992F-2E36810D9AAB} = {23515F8A-1184-4FDF-9A1D-8B2D86BA16C2}
 		{00610451-07D1-4BFB-85E5-BAC34717DADE} = {DDAB2304-AE76-45AC-83C6-3435B88F10C3}
 		{5FAA02A7-866C-474E-A0A9-5185787D3956} = {CDF55D92-DF35-4427-80B2-F935AAB83F79}
+		{6B093AEB-9C5C-4BF4-A75C-CADDE57BBE80} = {510C9EEE-7654-4EED-ACD4-C20BF0127CF2}
+		{6A6B4DAE-82E9-4579-94FF-E08413AEE3A5} = {510C9EEE-7654-4EED-ACD4-C20BF0127CF2}
+		{133D1109-365C-4E95-ABB4-7F5844C3A26C} = {510C9EEE-7654-4EED-ACD4-C20BF0127CF2}
+		{02AC465E-F2FC-479A-87DC-903D51BF9E7C} = {510C9EEE-7654-4EED-ACD4-C20BF0127CF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81E22A42-5873-4D5D-A39E-A299F7777422}
