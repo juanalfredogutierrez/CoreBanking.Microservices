@@ -1,23 +1,9 @@
 name: cbank
 
 services:
-
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-
-    environment:
-      SA_PASSWORD: "TuPassword123!"
-      ACCEPT_EULA: "Y"
-
-    ports:
-      - "1433:1433"
-
-    networks:
-      - corebanking-network
-
   customerservice:
     build:
-      context: .
+      context: ../..
       dockerfile: CustomerService.API/Dockerfile
 
     ports:
@@ -27,15 +13,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CustomerDb;User Id=sa;Password=TuPassword123!;TrustServerCertificate=True
 
-    depends_on:
-      - sqlserver
-
     networks:
-      - corebanking-network
+      -  banking-network
 
   accountservice:
     build:
-      context: .
+      context: ../..
       dockerfile: AccountService.API/Dockerfile
 
     ports:
@@ -47,12 +30,11 @@ services:
       - Services__CustomerService=http://customerservice:8080
 
     depends_on:
-      - sqlserver
       - customerservice
 
     networks:
-      - corebanking-network
+      -  banking-network
 
 networks:
-  corebanking-network:
+   banking-network:
     driver: bridge

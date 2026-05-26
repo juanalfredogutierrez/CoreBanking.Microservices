@@ -1,3 +1,4 @@
+name: cbank-db
 services:
 
   sqlserver:

@@ -1,5 +1,4 @@
-version: "3.9"
-
+name: cbank
 services:
 
   sqlserver:
@@ -42,6 +41,3 @@ services:
     networks:
       - corebanking-network
 
-networks:
-  corebanking-network:
-    driver: bridge
