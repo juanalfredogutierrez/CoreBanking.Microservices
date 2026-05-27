@@ -1,6 +1,7 @@
-name: cbank
+name: cbankservices
 
 services:
+
   customerservice:
     build:
       context: ../..
@@ -11,10 +12,10 @@ services:
 
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CustomerDb;User Id=sa;Password=TuPassword123!;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CustomerDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
 
     networks:
-      -  banking-network
+      - banking-network
 
   accountservice:
     build:
@@ -26,15 +27,15 @@ services:
 
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=AccountDb;User Id=sa;Password=TuPassword123!;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=AccountDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
       - Services__CustomerService=http://customerservice:8080
 
     depends_on:
       - customerservice
 
     networks:
-      -  banking-network
+      - banking-network
 
 networks:
-   banking-network:
-    driver: bridge
+  banking-network:
+    external: true

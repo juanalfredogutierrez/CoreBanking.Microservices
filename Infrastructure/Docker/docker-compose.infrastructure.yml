@@ -1,4 +1,5 @@
 name: cbank-db
+
 services:
 
   sqlserver:
@@ -37,6 +38,7 @@ services:
 
 networks:
   banking-network:
+    external: true
 
 volumes:
   sqlserver_data:

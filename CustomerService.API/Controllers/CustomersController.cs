@@ -34,7 +34,7 @@ namespace CustomerService.API.Controllers
             var exists = await _getHandler.Handle(id);
 
             if (!exists)
-                return NotFound();
+                return NotFound("Customer not found");
 
             return Ok(exists);
 
