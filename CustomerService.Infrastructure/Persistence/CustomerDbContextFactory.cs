@@ -23,7 +23,7 @@ namespace CustomerService.Infrastructure.Persistence
 
             var optionsBuilder = new DbContextOptionsBuilder<CustomerDbContext>();
 
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
 
             return new CustomerDbContext(optionsBuilder.Options);
         }

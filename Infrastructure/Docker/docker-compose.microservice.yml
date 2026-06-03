@@ -12,8 +12,7 @@ services:
 
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CustomerDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
-
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=CustomerDb;Username=postgres;Password=postgres
     networks:
       - banking-network
 

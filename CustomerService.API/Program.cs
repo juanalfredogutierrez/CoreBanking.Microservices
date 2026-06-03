@@ -15,13 +15,7 @@ var connectionString =
 
 builder.Services.AddDbContext<CustomerDbContext>(options =>
 {
-    options.UseSqlServer(connectionString, sql =>
-    {
-        sql.EnableRetryOnFailure(
-            maxRetryCount: 5,
-            maxRetryDelay: TimeSpan.FromSeconds(5),
-            errorNumbersToAdd: null);
-    });
+    options.UseNpgsql(connectionString);
 });
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -38,7 +32,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
