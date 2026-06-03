@@ -5,7 +5,7 @@ using AccountService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddHealthChecks();
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -61,5 +61,6 @@ if (!app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHealthChecks("/health/live");
+app.MapHealthChecks("/health/ready");
 app.Run();
